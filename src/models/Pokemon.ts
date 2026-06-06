@@ -10,7 +10,7 @@ export interface PokemonResumo {
 }
 
 //RF03 – Criar uma interface para o retorno da API
-interface PokemonApiResponse {
+export interface PokemonApiResponse {
   id: number;
   name: string;
   types: { type: { name: string } }[];
