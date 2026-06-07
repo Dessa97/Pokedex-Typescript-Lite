@@ -6,11 +6,11 @@ export function createSeparator(): string {
 }
 
 export function formatPokemonResumo(pokemon: PokemonResumo): string {
-  return `{createSeparator()}
+  return `${createSeparator()}
 ID: ${pokemon.id}
 Nome: ${pokemon.nome}
 Tipos: ${pokemon.tipos.join(", ")}
 Altura: ${pokemon.altura} 
 Peso: ${pokemon.peso} 
-{createSeparator()}`;
+${createSeparator()}`;
 }
