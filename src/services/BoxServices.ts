@@ -1,6 +1,7 @@
 //# Camada de Persistência Local (node:fs/promises). Aplica métodos funcionais validados pelo TS.
 // src/services/BoxServices.ts
 import { PokemonResumo } from "../models/Pokemon";
+import { formatPokemonResumo } from "../utils/textFormatters";
 
 export class CatalogoPokemon {
   private pokemons: PokemonResumo[] = [];
@@ -24,11 +25,10 @@ export class CatalogoPokemon {
       return;
     }
     
+    console.log("\n📚 Catálogo Completo:");
     // Usar forEach() para exibir
     this.pokemons.forEach((pokemon) => {
-      console.log(
-        `#${pokemon.id} - ${pokemon.nome} | Tipos: ${pokemon.tipos.join(", ")} | Altura: ${pokemon.altura} | Peso: ${pokemon.peso}`
-      );
+      console.log(formatPokemonResumo(pokemon));
     });
   }
 
