@@ -7,8 +7,12 @@ class PokeApiService {
     async buscarPokemon(nomeOuId) {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${nomeOuId}`);
-            if (!response.ok) {
-                throw new CustomErrors_1.APIError(`Erro ao buscar Pokémon`);
+            if (response.status === 404) {
+                console.warn(`Pokémon não encontrado: ${nomeOuId}`);
+                return null;
+            }
+            else if (!response.ok) {
+                throw new CustomErrors_1.APIError(`Erro na requisição: ${response.statusText}`);
             }
             const dados = await response.json();
             return {
