@@ -8,8 +8,12 @@ export class PokeApiService {
       const response: Response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${nomeOuId}`,
       );
-      if (!response.ok) {
-        throw new APIError(`Erro ao buscar Pokémon`);
+      if (response.status === 404) {
+        console.warn(`Pokémon não encontrado: ${nomeOuId}`);
+        return null;
+      }
+      else if (!response.ok) {
+        throw new APIError(`Erro na requisição: ${response.statusText}`);
       }
       const dados: PokemonApiResponse = await response.json();
       return {
